@@ -7,15 +7,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 </head>
 <body ng-controller='superCallCtrl as vm'>
+  <img ng-src={{vm.img}} alt="{{vm.alt}}">
   <h2>SUPER HEROES</h2>
   <form class="search">
     <input type="text" id="search-box" ng-model="vm.searchText">
     <label for="search-box">Search:</label>
   </form>
   <ul>
-    <li ng-repeat="super in vm.supers | filter: vm.searchText" class="super {{super.group}}"> {{super.name}} - <span class="num">{{super.number}}</span> </li>
+    <li ng-repeat="super in vm.supers | filter: vm.searchText" ng-click="vm.showImg(super)" class="super {{super.group}}"> {{super.name}} - <span class="num">{{super.number}}</span> </li>
   </ul>
-
   <form class="add-hero">
     <p>
       <input type="text" ng-model="vm.newHero.name" id="new-hero-name">

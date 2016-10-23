@@ -61,9 +61,20 @@ angular
   function superCallController() {
     this.supers = superheroList
     this.newHero = {}
+    this.img = ""
+    this.imgAlt = ""
+
     this.addHero = function(){
       let hero = this.newHero
       this.supers.push(hero)
       this.newHero = {}
     }
+
+    this.showImg = function(hero) {
+      this.img = hero.img
+      this.alt = hero.name
+      console.log(this.img);
+      console.log(hero.img);
+    }
+
   }
