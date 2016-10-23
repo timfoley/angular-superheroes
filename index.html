@@ -1,12 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="superCallApp">
 <head>
   <meta charset="UTF-8">
   <title>Superhero Phone Book</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 </head>
-<body>
+<body ng-controller='superCallCtrl as vm'>
+  <h2>SUPER HEROES</h2>
+  <form class="search">
+    <input type="text" id="search-box" ng-model="vm.searchText">
+    <label for="search-box">Search:</label>
+  </form>
+  <ul>
+    <li ng-repeat="super in vm.supers | filter: vm.searchText" class="super {{super.group}}"> {{super.name}} - <span class="num">{{super.number}}</span> </li>
+  </ul>
 
+  <form class="add-hero">
+    <p>
+      <input type="text" ng-model="vm.newHero.name" id="new-hero-name">
+      <label for="new-hero-name">Name</label>
+    </p>
+    <p>
+      <input type="text" ng-model="vm.newHero.number" id="new-hero-number">
+      <label for="new-hero-number">Number</label>
+    </p>
+    <p>
+      <input type="radio" ng-model="vm.newHero.group" id="new-hero-group-marvel" value="Marvel">
+      <label for="new-hero-group-marvel">Marvel</label>
+    </p>
+    <p>
+      <input type="radio" ng-model="vm.newHero.group" id="new-hero-group-dc" value="DC">
+      <label for="new-hero-group-dc">DC</label>
+    </p>
+    <p>
+      <input type="radio" ng-model="vm.newHero.group" id="new-hero-group-indie" value="Independant">
+      <label for="new-hero-group-indie">Independent</label>
+    </p>
+    <p>
+      <input type="text" ng-model="vm.newHero.img_url" id="new-hero-img_url">
+      <label for="new-hero-img_url">Image Url</label>
+    </p>
+
+    <button ng-click="vm.addHero()">Add to List</button>
+  </form>
   <script src="app.js"></script>
 </body>
 </html>
